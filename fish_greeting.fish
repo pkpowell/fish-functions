@@ -10,7 +10,7 @@ function fish_greeting
 		set cpu $model[2]
 		set hdAvailable (df -H / --output=avail)[2]
 		set utString (uptime -p)
-		set networkInfo (hostname) (hostname -I)
+		set networkInfo (hostname) #(hostname -I)
 
 		set sleept 0
 		
