@@ -1,3 +1,3 @@
 function nb
-    sudo netbird ssh $  argv
+    sudo netbird ssh $argv
 end
