@@ -33,7 +33,7 @@ function lop
 		end
 
 		echo "(q) Quit"
-		read -p echo "Choose your app 1 - "(count $apps)": " choice
+		read -p echo '"Choose your app 1 - "'(count $apps)": " choice
 		
 		switch $choice
 			case q
