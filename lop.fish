@@ -24,9 +24,7 @@ function lop
 	case 1
 		echo "Single app found"
 		set app $apps[1]
-		echo "opening $app with local $locale"
-		open "$app" --args -AppleLanguages "($locale)"
-		
+
 	case *
 		echo "Multiple apps found"
 		for idx in (seq (count $apps))
@@ -39,14 +37,15 @@ function lop
 		
 		switch $choice
 			case q
-				return
+				exit 0
 			case "*"
 				if string match --quiet --regex '[a-z]' $choice >/dev/null 
 					return
 				end
 				set app $apps[$choice]
 		end
-		echo "opening $app with local $locale"
-		open "$app" --args -AppleLanguages "($locale)"
 	end
+
+	echo "opening $app with local $locale"
+	open "$app" --args -AppleLanguages "($locale)"
 end
