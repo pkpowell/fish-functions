@@ -13,4 +13,6 @@ function lop
 	end
 	set app (mdfind -name "$appname" -onlyin /Applications) 
 	echo "opening $app with local $locale"
+
+	open "$app" --args -AppleLanguages "($locale)"
 end
