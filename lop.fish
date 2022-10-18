@@ -1,3 +1,4 @@
+#!/usr/bin/env fish
 function lop
 	set locale "en"
 	getopts $argv | while read -l key option
@@ -13,6 +14,7 @@ function lop
 	end
 	set apps (mdfind -name "$appname" -onlyin /Applications) 
 	set appcount (count $apps)
+	echo "Found $appcount apps"
 
 	switch $appcount
 	case 0
