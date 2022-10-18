@@ -1,4 +1,5 @@
 function lop
+	set locale "en"
 	getopts $argv | while read -l key option
 		switch $key
 			case _
@@ -11,5 +12,5 @@ function lop
 		end
 	end
 	set app (mdfind -name "$appname" -onlyin /Applications) 
-	echo "$app"
+	echo "opening $app with local $locale"
 end
