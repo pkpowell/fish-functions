@@ -15,12 +15,14 @@ function lop
 	
 	switch (count $apps)
 	case 0
+		echo "Nothing found"
 		exit 1
-
+		
 	case 1
 		set app $apps[1]
-
+		
 	case *
+		echo "Multiple apps found"
 		for idx in (seq (count $apps))
 			echo -n "($idx)"
 			echo $apps[$idx] 
