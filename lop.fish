@@ -25,7 +25,7 @@ function lop
 		echo "Single app found"
 		set app $apps[1]
 
-	case *
+	case "*"
 		echo "Multiple apps found"
 		for idx in (seq (count $apps))
 			echo -n "($idx)"
