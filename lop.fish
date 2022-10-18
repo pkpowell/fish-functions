@@ -12,24 +12,33 @@ function lop
 		end
 	end
 	set apps (mdfind -name "$appname" -onlyin /Applications) 
-	# echo "opening $app[1] with local $locale"
-
-	for idx in (seq (count $apps))
-		echo -n "($idx)"
-		echo $apps[$idx] 
-	end
-	echo "(q) Quit"
-	read -p 'echo "Choose your app 1 - "'(count $apps)": " choice
 	
-	switch $choice
-		case q
-			return
-		case "*"
-			if string match --quiet --regex '[a-z]' $choice >/dev/null 
-				return
-			end
-			set app $apps[$choice]
-	end
+	switch (count $apps)
+	case 0
+		exit 1
 
-	open "$app[1]" --args -AppleLanguages "($locale)"
+	case 1
+		set app $apps[1]
+
+	case *
+		for idx in (seq (count $apps))
+			echo -n "($idx)"
+			echo $apps[$idx] 
+		end
+
+		echo "(q) Quit"
+		read -p echo "Choose your app 1 - "(count $apps)": " choice
+		
+		switch $choice
+			case q
+				return
+			case "*"
+				if string match --quiet --regex '[a-z]' $choice >/dev/null 
+					return
+				end
+				set app $apps[$choice]
+		end
+	end
+	echo "opening $app with local $locale"
+	open "$app" --args -AppleLanguages "($locale)"
 end
