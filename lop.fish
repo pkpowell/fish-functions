@@ -22,6 +22,7 @@ function lop
 		exit 1
 		
 	case 1
+		echo "Single app found"
 		set app $apps[1]
 		
 	case *
