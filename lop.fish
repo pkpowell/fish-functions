@@ -24,6 +24,8 @@ function lop
 	case 1
 		echo "Single app found"
 		set app $apps[1]
+		echo "opening $app with local $locale"
+		open "$app" --args -AppleLanguages "($locale)"
 		
 	case *
 		echo "Multiple apps found"
@@ -44,7 +46,7 @@ function lop
 				end
 				set app $apps[$choice]
 		end
+		echo "opening $app with local $locale"
+		open "$app" --args -AppleLanguages "($locale)"
 	end
-	echo "opening $app with local $locale"
-	open "$app" --args -AppleLanguages "($locale)"
 end
