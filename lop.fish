@@ -12,8 +12,9 @@ function lop
 		end
 	end
 	set apps (mdfind -name "$appname" -onlyin /Applications) 
-	
-	switch (count $apps)
+	set appcount (count $apps)
+
+	switch $appcount
 	case 0
 		echo "Nothing found"
 		exit 1
