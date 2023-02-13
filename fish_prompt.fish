@@ -213,7 +213,7 @@ function fish_prompt
     end
 
     set_color $lucid_cwd_color
-    echo -sn $user $host $cwd
+    echo -sn $user @ $host : $cwd
     set_color normal
 
     if test $cwd != '~'; or test -n "$lucid_git_status_in_home_directory"
