@@ -205,13 +205,15 @@ end
 function fish_prompt
     set -l last_pipestatus $pipestatus
     set -l cwd (pwd | string replace "$HOME" '~')
+    set -l host (hostname) 
+    set -l user (whoami) 
 
     if test -z "$lucid_skip_newline"
         echo ''
     end
 
     set_color $lucid_cwd_color
-    echo -sn $cwd
+    echo -sn $user $host $cwd
     set_color normal
 
     if test $cwd != '~'; or test -n "$lucid_git_status_in_home_directory"
