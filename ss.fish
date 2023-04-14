@@ -36,14 +36,13 @@ function ss
 	set -q sshUser; or set sshUser $defaultSSHUser
 	
 	if [ $sshTarget ]
-        set ips6 (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ipv6_address | awk '{print $2}')
-        set ips4 (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ip_address | awk '{print $2}')
-        set ip6Number (count $ips6)
-        set ip4Number (count $ips4)
-        echo $ips4
-        echo $ips6
+        set ips (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ipv6_address | awk '{print $2}')
+        set -a ips (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ip_address | awk '{print $2}')
+        set ipNumber (count $ips)
+        echo $ips
+
 		if [ $showIPs ]
-			switch $ip4Number
+			switch $ipNumber
 				case 0
 					set_color yellow
 					echo "No data found for '$sshTarget'" 
