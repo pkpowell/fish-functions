@@ -1,3 +1,5 @@
 function fish_prompt
-    /usr/local/bin/starship prompt
+    if test "$TERM_PROGRAM" != "WarpTerminal"
+        /usr/local/bin/starship prompt
+    end
 end
