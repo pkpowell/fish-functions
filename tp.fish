@@ -1,9 +1,9 @@
 function tp
     set pid (pgrep $argv)
-    if count(pid) -gt 1 
+    if [ count $pid -gt 1 ]
         for i in (seq (count $ips))
             echo -n "($i)"
-            echo $ips[$i] 
+            echo $pid[$i] 
         end
         echo "(q) Quit"
         read -p 'echo "Choose your pid 1*-"'(count $pid)": " choice
