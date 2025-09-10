@@ -1,5 +1,5 @@
 function tp
-    set pid (pgrep $argv)
+    set pid (pgrep -l $argv)
     if [ (count $pid) -gt 1 ]
         for i in (seq (count $ips))
             echo -n "($i)"
