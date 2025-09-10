@@ -1,9 +1,9 @@
 function tp
-    set args (string split @ $argv)
-    if count args = 1; 
-        set pid (pgrep args)
+    
+    set pid (pgrep $argv)
+    if count $pid = < 1; 
         top -pid $pid
     else
-        echo "Wrong arg count"
+        echo "Can't find process"
     end
 end
