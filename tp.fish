@@ -1,7 +1,6 @@
 function tp
-    
     set pid (pgrep $argv)
-    if count $pid = < 1; 
+    if $pid = > 0; 
         top -pid $pid
     else
         echo "Can't find process"
