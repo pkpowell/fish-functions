@@ -19,8 +19,7 @@ function tp
         end
     end
         
-    set pid string split ' ' $pid
-    set pid $pid[1]
+    set pid (string split ' ' $pid)[1]
 
     if [ $pid -gt 1 ] 
         top -pid $pid
