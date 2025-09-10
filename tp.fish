@@ -1,4 +1,4 @@
-function tb
+function tp
     set args (string split @ $argv)
     if count args = 1; 
         set pid (pgrep zt-client)
