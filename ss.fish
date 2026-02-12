@@ -1,8 +1,6 @@
 function ss
-	# set jq (which jq )
-	# set sshFlags " -6 -o BatchMode=yes -o StrictHostKeyChecking=no "
+	# // defaults
 	set defaultSSHUser ard
-
 	set sshPort 22
 	set sshProtoll "-4"
 	set verbose ""
@@ -16,6 +14,8 @@ function ss
 				set sshCommand $option
 			case 4
 				set sshProtoll "-4"
+			case 6
+				set sshProtoll "-6"
 			case v
 				set verbose " -v"
 			case u
@@ -28,7 +28,7 @@ function ss
             case i
                 set showIPs true
 			case "*"
-				echo "Usage: s6 target [-u user -c command -f file]"
+				echo "Usage: ss target [-u user -c command -f file]"
 				return
 		end
 	end
@@ -50,7 +50,7 @@ function ss
 					set_color normal
 				case 1
 					if [ $sshTarget ]
-						echo "One ip"
+						echo "Single ip"
 						set sshTarget $ips[1]
 					end
 				case '*'
@@ -59,7 +59,7 @@ function ss
 						echo $ips[$i]
 					end
 					echo "(q) Quit"
-					read -p 'echo "Choose your ip 1*-"'(count $ips)": " choice
+					read -p 'echo "Choose an ip 1*-"'(count $ips)": " choice
 
 					switch $choice
 						case q
