@@ -4,7 +4,7 @@ function ss
 	set defaultSSHUser ard
 
 	set sshPort 22
-	set sshProtoll "-6"
+	set sshProtoll "-4"
 	set verbose ""
 
 	getopts $argv | while read -l key option
@@ -12,13 +12,13 @@ function ss
 			case _
 				set sshTarget $option
                 set target $option
-			case c 
+			case c
 				set sshCommand $option
-			case 4 
+			case 4
 				set sshProtoll "-4"
-			case v 
+			case v
 				set verbose " -v"
-			case u 
+			case u
 				set sshUser $option
 			case p
 				set sshPort $option
@@ -34,7 +34,7 @@ function ss
 	end
 	# check if user set
 	set -q sshUser; or set sshUser $defaultSSHUser
-	
+
 	if [ $sshTarget ]
         set ips (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ipv6_address | awk '{print $2}')
         set -a ips (/usr/bin/dscacheutil -q host -a name $sshTarget | grep ip_address | awk '{print $2}')
@@ -45,9 +45,9 @@ function ss
 			switch $ipNumber
 				case 0
 					set_color yellow
-					echo "No data found for '$sshTarget'" 
+					echo "No data found for '$sshTarget'"
 					echo "Check hostname and/or network connection."
-					set_color normal	
+					set_color normal
 				case 1
 					if [ $sshTarget ]
 						echo "One ip"
@@ -56,27 +56,27 @@ function ss
 				case '*'
 					for i in (seq (count $ips))
 						echo -n "($i)"
-						echo $ips[$i] 
+						echo $ips[$i]
 					end
 					echo "(q) Quit"
 					read -p 'echo "Choose your ip 1*-"'(count $ips)": " choice
-					
+
 					switch $choice
 						case q
 							return
 						case "*"
-							if string match --quiet --regex '[a-z]' $choice >/dev/null 
+							if string match --quiet --regex '[a-z]' $choice >/dev/null
 								return
 							end
 							set sshTarget $ips[$choice]
 					end
-						
+
 			end
 		end
-	
+
 		if [ $fileTransfer ]
 			echo "Transferring $fileTransfer to $sshTarget to $sshUser's home folder"
-			scp -P $sshPort -r $sshProtoll $fileTransfer $sshUser@$sshTarget:./ 
+			scp -P $sshPort -r $sshProtoll $fileTransfer $sshUser@$sshTarget:./
 			return
 		end
 
