@@ -2,7 +2,7 @@ function fish_greeting
 	set currentTime (date +%s)
 	switch (uname)
 	case Linux
-		set zt_public_id "/var/lib/zerotier-one/identity.public"
+		# set zt_public_id "/var/lib/zerotier-one/identity.public"
 		set kernos (uname -r)
 		set arch (uname -m)
 		set cpuCores (nproc)
@@ -26,7 +26,7 @@ function fish_greeting
 			set cpuCache "unknown"
 		end
 
-		set zt_public_id "/Library/Application Support/ZeroTier/One/identity.public"
+		# set zt_public_id "/Library/Application Support/ZeroTier/One/identity.public"
 		set hwm (sysctl -n hw.memsize)
 		set memFormatted (math -s0 "$hwm / 1024 / 1024 / 1024")GB
 		set kernos (sysctl -n kern.osversion)
@@ -123,15 +123,15 @@ function fish_greeting
 		echoFormat "last sleep" (date -r $sleept '+%d.%m.%y %H:%M:%S')" for $sleepString"
 	end
 
-	if [ -f $zt_public_id ]
-		set zt_id (head -c 10 $zt_public_id)
-		if test -f /usr/local/bin/zerotier-cli 
-			set zt_vers (/usr/local/bin/zerotier-cli -v)
-		else
-			set zt_vers --
-		end
-		echoFormat "zt id" "$zt_id (v$zt_vers)"
-	end
+#	if [ -f $zt_public_id ]
+#		set zt_id (head -c 10 $zt_public_id)
+#		if test -f /usr/local/bin/zerotier-cli 
+#			set zt_vers (/usr/local/bin/zerotier-cli -v)
+#		else
+#			set zt_vers --
+#		end
+#		echoFormat "zt id" "$zt_id (v$zt_vers)"
+#	end
 
 	set_color normal
 end
