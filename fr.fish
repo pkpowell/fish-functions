@@ -1,3 +1,3 @@
 function fr
-    ghostty --window-width=140 --window-height=45 -e fresh $argv
+    ghostty --window-width=140 --window-height=45 --working-directory=$PWD -e fresh $argv
 end
